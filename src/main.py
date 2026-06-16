@@ -74,7 +74,7 @@ def main():
             print("[4/4] Querying LLM for fix recommendation...\n")
             response = co.chat(
                 message=final_prompt,
-                model="command-r"
+                model="command-r-plus-08-2024"
             )
             
             print("="*50)

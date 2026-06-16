@@ -2,7 +2,16 @@ def build_rag_prompt(user_query, retrieved_contexts):
     prompt_parts = []
     
     # 1. Enforce the strict system rule exactly as requested
-    prompt_parts.append("System Rule: Answer using only the provided context. Notice the original fix size (lines changed) to guide your recommendation.\n")
+    system_rule = (
+        "System Rule: You are an expert coding assistant. Assume the provided code context is the EXACT proven solution "
+        "to the user's bug. Do not just summarize the code; act as if you are instructing the user on how to apply "
+        "this specific fix to resolve their issue. Answer using ONLY the provided context, and notice the original "
+        "fix size (lines changed) to guide your step-by-step recommendation. "
+        "CRITICAL: If the retrieved contexts contain redundant or duplicate code changes across multiple commits, "
+        "consolidate them. Provide the fix recommendation ONLY ONCE as a single unified set of instructions, rather than "
+        "repeating the same steps for each commit.\n"
+    )
+    prompt_parts.append(system_rule)
     
     # 2. Append Context Data
     prompt_parts.append("--- RETRIEVED CONTEXT START ---")
