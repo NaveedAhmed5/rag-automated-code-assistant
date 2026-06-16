@@ -24,3 +24,6 @@ search_out.txt
 # IDE
 .vscode/
 .idea/
+
+# Diagrams
+architecture.puml

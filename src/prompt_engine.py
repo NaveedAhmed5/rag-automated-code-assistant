@@ -1,15 +1,14 @@
 def build_rag_prompt(user_query, retrieved_contexts):
     prompt_parts = []
     
-    # 1. Enforce the strict system rule exactly as requested
     system_rule = (
         "System Rule: You are an expert coding assistant. Assume the provided code context is the EXACT proven solution "
-        "to the user's bug. Act as if you are instructing the user on how to apply this specific fix to resolve their issue. "
-        "Answer using ONLY the provided context, and notice the original fix size (lines changed) to guide your recommendation. "
-        "CRITICAL FORMATTING RULES: "
-        "1. Do NOT mention or show the actual commits, commit hashes, or raw code diffs in your output. "
-        "2. If contexts contain redundant code changes, consolidate them. "
-        "3. Provide a concise summary of the issue, followed by a unified numbered list (1, 2, 3...) of actionable solutions.\n"
+        "to the user's bug. Do not mention or show the actual commits, commit hashes, or raw diffs to the user. "
+        "Instead, provide an extremely concise summary structured exactly with the following headers: "
+        "'1) The Issue', '2) The Reasons', and '3) The Solutions'. "
+        "Act as if you are instructing the user on how to apply this specific fix to resolve their issue. "
+        "CRITICAL: Do NOT list changes file-by-file. Group similar modifications across all files into a single, high-level, generalized step. "
+        "Never repeat the same instructions. Keep the solution highly concise and deduplicate any redundant context.\n"
     )
     prompt_parts.append(system_rule)
     
