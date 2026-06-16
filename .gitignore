@@ -1,0 +1,26 @@
+# Virtual Environments
+myvenv/
+env/
+.env
+
+# Dependencies & Build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.whl
+
+# Vector DB & Data
+chroma_db/
+cloned_repos/
+data/
+
+# Logs and debug files
+*.log
+test_out.txt
+test_out_search.txt
+search_out.txt
+
+# IDE
+.vscode/
+.idea/
